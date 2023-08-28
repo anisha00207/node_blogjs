@@ -1,0 +1,20 @@
+<!-- edit.ejs -->
+<%-include('partials/header'); -%>
+<style>
+  .danger{
+    height: 25px;
+    width:65px;
+    background-color: rgb(247, 129, 108);
+   }
+   #left{
+    margin-left: 140px;
+   }
+</style>
+
+<form action="/edit/<%= post.Title %>" method="post" id="left">
+  <textarea name="updatedContent" rows="50" cols="180"><%= post.Content %></textarea>
+  <br>
+  <br>
+  <br>
+  <button type="submit" class="danger">Save</button>
+</form>

@@ -1,0 +1,27 @@
+<%-include('partials/header'); -%>
+<style>
+  .hi{
+      margin-left: 140px;
+      margin-right:140px;
+    }
+</style>
+
+
+<form action="/compose" method="post" class="hi" >
+  <div class="form group">
+    <label>Title</label>
+    <input class="form-control" type="text" name="postTitle">
+    <br>
+    <label>Date</label>
+    <input class="form-control" type="date" name="postDate">
+    <br>
+    
+    <label>Post</label>
+    <textarea class="form-control" name="postContent" rows="8" cols="160"></textarea>
+    <br>
+    <button type="submit" class="btn btn-lg btn-primary">Publish</button>
+  </div>
+</form>
+
+
+

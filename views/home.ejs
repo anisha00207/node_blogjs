@@ -1,0 +1,178 @@
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  
+  </head>
+  <style>
+   
+    .date{
+      font-size: small;
+      color: rgb(99, 99, 99);
+    
+    }
+    .forms{
+      display:flex;
+    
+    }
+    .first{
+      margin-left: 140px;
+      margin-right:140px;
+     height:500px;
+    
+      background-color: rgb(224, 238, 214);
+      padding-top: 150px;
+      align-content: center;
+      border-radius: 50px;
+      margin-top: 40px;
+      background-image: url('style.jpg');
+    
+    }
+    #h3{
+    text-align: center;
+    font-style: italic;
+    font-family: "Times New Roman", Times, serif;
+  padding-top: 80px;
+
+    }
+    .post{
+    padding-left: 100px;
+    padding-right: 120px;
+    margin-left: 140px;
+    margin-right: 140px;
+      background-color: rgb(224, 238, 214);
+      border-radius: 50px;
+      margin-top:50px;
+    }
+    /* Add fade-in animation to posts */
+.post {
+  animation: fadeInUp 0.5s ease-in-out forwards;
+  opacity: 0;
+  transform: translateY(10px);
+
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    
+    #create{
+      text-decoration: none;
+      color: black;
+    }
+    .head a{
+      color: rgb(2, 10, 82);
+      text-decoration:none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-style: italic;
+    }
+   .head a:hover{
+    size: 50%;
+    color:rgb(243, 179, 211);
+    text-decoration: none;
+   }
+   .danger{
+    height: 25px;
+    width:55px;
+    background-color: rgb(247, 129, 108);
+    border-radius: 30%;
+   }
+   .read{
+    color:blue;
+   }
+   #nothing{
+    padding-top: 30px;
+    text-align: center;
+    color:rgb(73, 70, 70);
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+
+   }
+  #home{
+    font-family:" Trattatello, fantasy";
+    
+  }
+  #mid{
+    font-weight: 700;
+  }
+
+  </style>
+  </head>
+  <body >
+<%- include('partials/header'); -%>
+
+<div class="first" class="hi">
+<center><h2 style ="color: rgb(23, 1, 104);" id="home"><b>HOME</b></h2></center>
+
+<br>
+<p >
+
+ <center id="mid" > <i>A blog is something where you can save your moments by posting them here!!  </i></center>
+</p>
+<br>
+<center><p> <i> let's start from here create your first blog here <a href="/compose" id="create"><b>CREATE</b>💓</a></i></p></center>
+
+<br>
+<br>
+</div>
+<div id="section" class="hi">
+<h3 id ="h3"> <b>-----------------------YOUR POSTS--------------------------</b></h3>
+<p id ="zero"></p>
+<% if (posts.length ===0) 
+{ %>
+  <h2 id ="nothing">---- nothing to display create your first post---- </h2>
+  <%  } %>
+
+
+<% posts.forEach(function(post) { %>
+
+  <div class="post">
+    <br>
+    <h3 class="head"> <a  href="/posts/<%= post.Title %>"><%= post.Title %></a></h3>
+    
+    
+    
+   <div class="post1">
+    <p>
+      <%= post.Content.substr(0, 500).concat("...............") %><a  href="/posts/<%= post.Title %> " class="read" >Read More</a>
+      <br>
+      <br>
+      <p class="date"><%=post.Date %>  </p>
+    </p>
+  </div>
+    <br>
+  
+    <p>
+      <div class="forms">
+      
+<form action="/edit/<%= post.Title %>" method="get">
+  <button type="submit" class="danger">Edit</button>
+</form>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <form action="/delete" method="post">
+      <input type="hidden" name="postTitle" value="<%= post.Title %>">
+      <button type="submit" class="danger">Delete</button>
+    </form>
+      </div>
+    </p>
+    <hr>
+
+    
+  </div>
+
+<% }); %>
+
+</div>
+
+
+
+  </body>
+  </html>
+
+
+
