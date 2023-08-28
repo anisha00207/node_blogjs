@@ -2,13 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
-
+const path =require("path");
 // Serve files from the "uploads" directory
 
 const posts = [];
 
 
 const app = express();
+app.set('views', path.join(__dirname, 'views'));
 
 
 app.set("view engine", "ejs");
